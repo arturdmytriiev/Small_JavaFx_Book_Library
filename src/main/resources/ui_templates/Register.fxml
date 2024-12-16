@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookslibraryfx.controller.ui_controller.RegisterController">
+    <stylesheets>
+        <URL value="@/styles/register.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="CENTER" prefHeight="450.0" prefWidth="400.0" spacing="15">
+            <Label styleClass="title-label" text="User Registration" />
+            <TextField fx:id="usernameField" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="200.0" promptText="Enter your username" styleClass="input-field" />
+            <PasswordField fx:id="passwordField" alignment="TOP_CENTER" promptText="Enter your password" styleClass="input-field" />
+            <PasswordField fx:id="confirmPasswordField" alignment="TOP_CENTER" promptText="Confirm your password" styleClass="input-field" />
+            <Button onAction="#handleRegister" styleClass="register-button" text="Register" />
+            <Button onAction="#handleBackToLogin" styleClass="back-button" text="Back to Login" />
+            <Label fx:id="errorLabel" styleClass="error-label" textFill="red" visible="false" />
+        </VBox>
+    </children>
+</AnchorPane>

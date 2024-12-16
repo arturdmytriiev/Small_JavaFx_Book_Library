@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookslibraryfx.controller.ui_controller.LoginController">
+    <stylesheets>
+        <URL value="@/styles/login.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="CENTER" prefHeight="406.0" prefWidth="399.0" spacing="15">
+            <Label styleClass="title-label" text="User Login" />
+            <TextField fx:id="usernameField" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="199.0" promptText="Enter your username" styleClass="input-field" />
+            <PasswordField fx:id="passwordField" alignment="TOP_CENTER" promptText="Enter your password" styleClass="input-field" />
+            <Button onAction="#handleLogin" styleClass="login-button" text="Login" />
+         <Button layoutX="175.0" layoutY="244.0" onAction="#handleRegister" styleClass="registration-button" text="Registration" />
+            <Label fx:id="errorLabel" styleClass="error-label" textFill="red" visible="false" />
+        </VBox>
+    </children>
+</AnchorPane>
