@@ -28,6 +28,10 @@ public class UserController {
         return userRepository.save(updatedUser);
     }
 
+    public void deleteUserById(int id) {
+        userRepository.deleteById(id);
+    }
+
 
 
 }

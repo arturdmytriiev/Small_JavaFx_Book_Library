@@ -3,6 +3,7 @@ package org.example.bookslibraryfx.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -14,6 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "username", nullable = false)
+    @Getter
     private String username;
     @Column(name = "password", nullable = false)
     private String password;
