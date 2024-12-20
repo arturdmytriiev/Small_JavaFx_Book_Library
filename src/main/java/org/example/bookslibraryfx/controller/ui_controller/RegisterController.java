@@ -8,7 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.bookslibraryfx.config.SecurityConfig;
+import org.example.bookslibraryfx.config.SpringFxmlLoaderConfig;
+import org.example.bookslibraryfx.model.Role;
+import org.example.bookslibraryfx.model.User;
 import org.example.bookslibraryfx.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -28,7 +34,14 @@ public class RegisterController {
     @FXML
     private Label errorLabel;
 
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private SpringFxmlLoaderConfig springFXMLLoader;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @FXML
     private void handleRegister() {
@@ -42,18 +55,27 @@ public class RegisterController {
         } else if (!password.equals(confirmPassword)) {
             errorLabel.setText("Passwords do not match.");
             errorLabel.setVisible(true);
+        }
+        User user = userService.getUserByUsername(username);
+        if(user != null) {
+          errorLabel.setText("Username is already taken.");
+          errorLabel.setVisible(true);
         } else {
             errorLabel.setVisible(false);
             System.out.println("Registration successful for user: " + username);
-
-
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(passwordEncoder.encode(password));
+            newUser.setRole(new Role(2, "USER"));
+            userService.saveUser(newUser);
+            handleBackToLogin();
         }
     }
 
     @FXML
     private void handleBackToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui_templates/Main.fxml"));
+            FXMLLoader loader = springFXMLLoader.load("/ui_templates/Main.fxml");
             Parent root = loader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(new Scene(root));

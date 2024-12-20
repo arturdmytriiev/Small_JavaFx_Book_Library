@@ -34,9 +34,6 @@ public class UserController {
         userRepository.deleteByUsername(username);
     }
 
-    public User findUserByUsername(String username) {
-       return userRepository.findByUsername(username);
-    }
 
 
 }
