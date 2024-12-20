@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.bookslibraryfx.service.UserService;
 import org.springframework.stereotype.Component;
 
 
@@ -24,10 +25,10 @@ public class RegisterController {
     @FXML
     private PasswordField confirmPasswordField;
 
-
-
     @FXML
     private Label errorLabel;
+
+    private UserService userService;
 
     @FXML
     private void handleRegister() {
@@ -45,7 +46,7 @@ public class RegisterController {
             errorLabel.setVisible(false);
             System.out.println("Registration successful for user: " + username);
 
-            //TODO Здесь можно добавить логику сохранения данных пользователя (например, в базу данных).
+
         }
     }
 
